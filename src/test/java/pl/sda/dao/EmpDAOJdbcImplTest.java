@@ -35,13 +35,13 @@ public class EmpDAOJdbcImplTest {
         Employee employee = empDAO.findById(7369);
 
         assertNotNull(employee);
-        assertEquals(7369, employee.getDeptno());
+        assertEquals(20, employee.getDeptno());
         assertEquals("SMITH", employee.getEname());
         assertEquals("CLERK", employee.getJob());
         assertEquals(sdf.parse("1993-06-13"), employee.getHiredate());
         assertEquals(BigDecimal.valueOf(800), employee.getSalary());
-        assertEquals(BigDecimal.valueOf(0.0), employee.getCommision());
-        assertEquals(20, employee.getDeptno());
+        assertTrue(BigDecimal.valueOf(800.00).compareTo(employee.getSalary())==0);
+        assertTrue(BigDecimal.valueOf(0.00).compareTo(employee.getCommision())==0);
 
     }
 
@@ -54,7 +54,7 @@ public class EmpDAOJdbcImplTest {
         Employee employeeFromDB = empDAO.findById(9000);
 
         assertNotNull(employeeFromDB);
-        assertEquals(employeeFromDB.getEmpno(), newEmployee.getDeptno());
+        assertEquals(employeeFromDB.getEmpno(), newEmployee.getEmpno());
         assertEquals(employeeFromDB.getEname(), newEmployee.getEname());
         assertEquals(employeeFromDB.getJob(), newEmployee.getJob());
         assertEquals(employeeFromDB.getHiredate(), newEmployee.getHiredate());
